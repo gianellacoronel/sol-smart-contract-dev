@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.30+commit.73712a01"
+		"version": "0.8.19+commit.7dd6d404"
 	},
 	"language": "Solidity",
 	"output": {
@@ -106,9 +106,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"StorageFactory/SimpleStorage.sol": "SimpleStorage"
+			"StorageFactory/AddFiveStorage.sol": "AddFiveStorage"
 		},
-		"evmVersion": "prague",
+		"evmVersion": "paris",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -120,6 +120,14 @@
 		"remappings": []
 	},
 	"sources": {
+		"StorageFactory/AddFiveStorage.sol": {
+			"keccak256": "0xf94612aa93d0c3f9a9bc65c7d215dae8e03e199d53749e2365f21908592eed6d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d33aac6d39aadfd336fc0f19e98d751c38e703936cdc1e51f2a26cd9cb08ff5b",
+				"dweb:/ipfs/QmWcg3NkyRRvMvvyVq9o5GmESWD9VUej3i1127th2Yf3bN"
+			]
+		},
 		"StorageFactory/SimpleStorage.sol": {
 			"keccak256": "0x19cf4dde61b0dec98b5578a91c9baaf0bf8fae6bb8fa4dad6ac43c7cd1dcdb87",
 			"license": "MIT",
