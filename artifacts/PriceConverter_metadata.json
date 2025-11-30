@@ -8,51 +8,12 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "funder",
-						"type": "address"
-					}
-				],
-				"name": "addressToAmountFunded",
-				"outputs": [
-					{
 						"internalType": "uint256",
-						"name": "amountFunded",
+						"name": "ethAmount",
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "fund",
-				"outputs": [],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "funders",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "minimumUsd",
+				"name": "getConversionRate",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -61,13 +22,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "withdraw",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -84,7 +38,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"3-FundMe/FundMe.sol": "FundMe"
+			"3-FundMe/PriceConverter.sol": "PriceConverter"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -98,14 +52,6 @@
 		"remappings": []
 	},
 	"sources": {
-		"3-FundMe/FundMe.sol": {
-			"keccak256": "0x014e0298cdc31b0a4391e7a5d669db1a45767ff28195d1c94931e40589458c20",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://b09180de655436cf5ccb0e4f0bc51fe62542eba86a1fd02a616a0e788a6b39e4",
-				"dweb:/ipfs/QmWwKX5btCxL6Akd25T3cBcuGeW7wAuvgzTwRegTFPGD8T"
-			]
-		},
 		"3-FundMe/PriceConverter.sol": {
 			"keccak256": "0x7c03f4a6e22d2a3090e16305c294f63443d08fb0c23aeccd296dfa9dcbf87462",
 			"urls": [
