@@ -9,7 +9,7 @@ pragma solidity ^0.8.19;
 import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 
 contract FundMe {
-    uint256 public minimumUsd = 5;
+    uint256 public minimumUsd = 5e18; // We change it because we are using getConversionRate in fund function.
     
     function fund() public payable {
         
@@ -18,7 +18,7 @@ contract FundMe {
         // 1. How do we send ETH to this contract?
 
         // msg.value is the amount you put on Deploy & run transactions tab
-        require(msg.value > minimumUsd, "didn't send enough ETH");
+        require(getConversionRate(msg.value) > minimumUsd, "didn't send enough ETH");
 
         // What is a revert?
         // Undo any actions that have been done, and send the remaining gas back
@@ -41,6 +41,14 @@ contract FundMe {
         //Learning how to cast numbers
         return uint256(price * 1e10);
     }
-    function getConversionRate() public {}
+    function getConversionRate(uint256 ethAmount) public view returns(uint256) {
+        //1 ETH?
+        uint256 ethPrice = getPrice(); //2000_000000000000000000
+        
+        // Always you want to multiply before divide
+        uint256 ethAmountInUsd = (ethPrice * ethAmount) / 1e18; //(2000_000000000000000000 * 1_0000000000000000000) / 1e18;
+        
+        return ethAmountInUsd; //$2000 = 1ETH
+    }
 
 }
