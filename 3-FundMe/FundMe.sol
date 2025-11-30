@@ -10,6 +10,8 @@ import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interf
 
 contract FundMe {
     uint256 public minimumUsd = 5e18; // We change it because we are using getConversionRate in fund function.
+    address[] public funders;
+    mapping(address funder => uint256 amountFunded) public addressToAmountFunded;
     
     function fund() public payable {
         
@@ -19,6 +21,8 @@ contract FundMe {
 
         // msg.value is the amount you put on Deploy & run transactions tab
         require(getConversionRate(msg.value) > minimumUsd, "didn't send enough ETH");
+        funders.push(msg.sender); //It's the account that do the transaction
+        addressToAmountFunded[msg.sender] = addressToAmountFunded[msg.sender] + msg.value;
 
         // What is a revert?
         // Undo any actions that have been done, and send the remaining gas back
