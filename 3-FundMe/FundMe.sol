@@ -27,9 +27,19 @@ contract FundMe {
     
     function withdraw() public {}
 
-    function getPrice() public {
+    function getPrice() public view returns(uint256){
         // Address 0x694AA1769357215DE4FAC081bf1f309aDC325306
         // ABI
+        AggregatorV3Interface priceFeed = AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306);
+        
+        // () when function returns a lot of values
+        //(uint80 roundId, int256 price, uint256 startedAt, uint256 timestamp, uint80 answeredInRound) = priceFeed.latestRoundData();
+        // Like we only need "price", we can delete the rest, keeping the commas
+        (,int256 price,,,) = priceFeed.latestRoundData();
+
+        //Price of ETH in terms of USD
+        //Learning how to cast numbers
+        return uint256(price * 1e10);
     }
     function getConversionRate() public {}
 
