@@ -27,12 +27,21 @@ contract FundMe {
         msg.value.getConversionRate(); //"msg.value is like the parameter for getConversionRate"
         require(msg.value.getConversionRate() >= minimumUsd, "didn't send enought ETH");
         funders.push(msg.sender); //It's the account that do the transaction
-        addressToAmountFunded[msg.sender] = addressToAmountFunded[msg.sender] + msg.value;
+        addressToAmountFunded[msg.sender] += msg.value;
 
         // What is a revert?
         // Undo any actions that have been done, and send the remaining gas back
         // If a code line is rejected, that reverts the previous operations, and spend gas.
     }
     
-    function withdraw() public {}
+    function withdraw() public {
+        // for loop
+        // [1, 2, 3, 4] elements
+        //  0, 1, 2, 3  indexes
+        for (uint256 funderIndex = 0; funderIndex < funders.length; funderIndex++) 
+        {
+            address funder = funders[funderIndex];
+            addressToAmountFunded[funder] = 0; // We want to reset the array, because we are doing a withdraw   
+        }
+    }
 }
