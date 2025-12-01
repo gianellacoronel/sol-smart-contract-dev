@@ -11,14 +11,17 @@ import {PriceConverter} from "./PriceConverter.sol";
 contract FundMe {
     using PriceConverter for uint256;
 
-    uint256 public minimumUsd = 5e18; // We change it because we are using getConversionRate in fund function.
+    // Constant keyword
+    uint256 public constant MINIMUM_USD = 5e18; // We change it because we are using getConversionRate in fund function.
+
     address[] public funders;
     mapping(address funder => uint256 amountFunded) public addressToAmountFunded;
 
-    address public owner;
+    //Immutable keyword: When you set it out one time.
+    address public immutable i_owner;
 
     constructor() { //It's a function that is inmediately called whenever you deploy your contract
-        owner = msg.sender;
+        i_owner = msg.sender;
     }
     
     function fund() public payable {
@@ -31,7 +34,7 @@ contract FundMe {
         //require(getConversionRate(msg.value) > minimumUsd, "didn't send enough ETH");
         
         msg.value.getConversionRate(); //"msg.value is like the parameter for getConversionRate"
-        require(msg.value.getConversionRate() >= minimumUsd, "didn't send enought ETH");
+        require(msg.value.getConversionRate() >= MINIMUM_USD, "didn't send enought ETH");
         funders.push(msg.sender); //It's the account that do the transaction
         addressToAmountFunded[msg.sender] += msg.value;
 
@@ -74,7 +77,7 @@ contract FundMe {
 
     //modifiers: something that we can put in a function, to add additional functionality
     modifier onlyOwner() {
-        require(msg.sender == owner, "Sender is not owner!");
+        require(msg.sender == i_owner, "Sender is not owner!");
         _; //this represents the rest of the code
     }
 }
