@@ -14,6 +14,12 @@ contract FundMe {
     uint256 public minimumUsd = 5e18; // We change it because we are using getConversionRate in fund function.
     address[] public funders;
     mapping(address funder => uint256 amountFunded) public addressToAmountFunded;
+
+    address public owner;
+
+    constructor() { //It's a function that is inmediately called whenever you deploy your contract
+        owner = msg.sender;
+    }
     
     function fund() public payable {
         
@@ -35,6 +41,7 @@ contract FundMe {
     }
     
     function withdraw() public {
+        require(msg.sender == owner, "Must be owner!");
         // for loop
         // [1, 2, 3, 4] elements
         //  0, 1, 2, 3  indexes
@@ -48,16 +55,16 @@ contract FundMe {
         funders = new address[](0); //Start with a length of 0
         // actually withdraw the funds
         //there are three different ways
-        // 1. Transfer
-            // msg.sender = address
-            // payable(msg.sender) = payable address
-        payable(msg.sender).transfer(address(this).balance);    //"this" refers to the whole contract
-        //If it fails, the process revert
+        // // 1. Transfer
+        //     // msg.sender = address
+        //     // payable(msg.sender) = payable address
+        // payable(msg.sender).transfer(address(this).balance);    //"this" refers to the whole contract
+        // //If it fails, the process revert
         
-        // 2. Send
-        bool sendSuccess = payable(msg.sender).send(address(this).balance);
-        //If it fails, the value will be false, because the return is a boolean
-        require(sendSuccess, "Send failed"); // With this, if it's false, it would revert the transaction
+        // // 2. Send
+        // bool sendSuccess = payable(msg.sender).send(address(this).balance);
+        // //If it fails, the value will be false, because the return is a boolean
+        // require(sendSuccess, "Send failed"); // With this, if it's false, it would revert the transaction
         
         // 3. Call
         // With can call a function inside call()
