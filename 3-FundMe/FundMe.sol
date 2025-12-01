@@ -43,5 +43,26 @@ contract FundMe {
             address funder = funders[funderIndex];
             addressToAmountFunded[funder] = 0; // We want to reset the array, because we are doing a withdraw   
         }
+
+        // reset the array
+        funders = new address[](0); //Start with a length of 0
+        // actually withdraw the funds
+        //there are three different ways
+        // 1. Transfer
+            // msg.sender = address
+            // payable(msg.sender) = payable address
+        payable(msg.sender).transfer(address(this).balance);    //"this" refers to the whole contract
+        //If it fails, the process revert
+        
+        // 2. Send
+        bool sendSuccess = payable(msg.sender).send(address(this).balance);
+        //If it fails, the value will be false, because the return is a boolean
+        require(sendSuccess, "Send failed"); // With this, if it's false, it would revert the transaction
+        
+        // 3. Call
+        // With can call a function inside call()
+        // (bool callSuccess, bytes memory dataReturned)
+        (bool callSuccess, ) = payable(msg.sender).call{value: address(this).balance}("");
+        require(callSuccess, "Call failed");
     }
 }
