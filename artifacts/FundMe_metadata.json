@@ -12,6 +12,11 @@
 			},
 			{
 				"inputs": [],
+				"name": "NotOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [],
 				"name": "MINIMUM_USD",
 				"outputs": [
 					{
@@ -117,11 +122,11 @@
 	},
 	"sources": {
 		"3-FundMe/FundMe.sol": {
-			"keccak256": "0x8cdf279df996229ab1b582d1e2912f522b602b575c8f6e282771cbe8e51bfa07",
+			"keccak256": "0x3a5dc1f59db52d6ecc0ab02314d91b33b5d10460f7886bc5d388754fced0ecbf",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://78c8d81e70abd363e379e87ac5731e20341beb02247d13fbcc7d50bd4f73edc9",
-				"dweb:/ipfs/QmZKyqmtv2SswMbcgTtmPKga8YdW4EM1Ad1kXmg7MWasU2"
+				"bzz-raw://70ebe382da631df799df71d0d692b8879a067d670b79ddb3ddc49a3a886656ba",
+				"dweb:/ipfs/QmXHeetUCtM6tHDn749pQvCeNt493XH14273xsWmv4qHXE"
 			]
 		},
 		"3-FundMe/PriceConverter.sol": {
