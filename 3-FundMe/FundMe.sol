@@ -40,8 +40,7 @@ contract FundMe {
         // If a code line is rejected, that reverts the previous operations, and spend gas.
     }
     
-    function withdraw() public {
-        require(msg.sender == owner, "Must be owner!");
+    function withdraw() public onlyOwner{
         // for loop
         // [1, 2, 3, 4] elements
         //  0, 1, 2, 3  indexes
@@ -71,5 +70,11 @@ contract FundMe {
         // (bool callSuccess, bytes memory dataReturned)
         (bool callSuccess, ) = payable(msg.sender).call{value: address(this).balance}("");
         require(callSuccess, "Call failed");
+    }
+
+    //modifiers: something that we can put in a function, to add additional functionality
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Sender is not owner!");
+        _; //this represents the rest of the code
     }
 }
